@@ -1,0 +1,13 @@
+# ref: https://help.github.com/en/actions/building-actions/metadata-syntax-for-github-actions
+name: Clojure Lint Action
+description: A simple GitHub Actions to lint Clojure Code with clj-kondo
+
+author: Nick Nichols
+
+branding:
+  color: purple
+  icon: search
+
+runs:
+  using: docker
+  image: Dockerfile
