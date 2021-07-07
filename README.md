@@ -62,7 +62,7 @@ Exclude patterns of target files.
 Same as `-not -path [exclude]` of `find` command.
 e.g. `./git/*`
 
-### `shellcheck_flags`
+### `clj_kondo_config`
 
 Optional.
 Flags to pass to clj-kondo's `--config` option, which may either be in-line options or a path to a config file.
