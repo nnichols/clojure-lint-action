@@ -1,7 +1,6 @@
 # Clojure Lint Action
 
-A simple GitHub Actions to lint clojure files with [clj-kondo](https://github.com/clj-kondo/clj-kondo) and [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve
-code review experience.
+A simple GitHub Action to lint clojure files with [clj-kondo](https://github.com/clj-kondo/clj-kondo) and [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve the code review experience.
 
 ## Inputs
 
