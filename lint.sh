@@ -1,6 +1,8 @@
 #!/bin/bash
 
 cd "${GITHUB_WORKSPACE}" || exit
+
+# https://github.com/reviewdog/reviewdog/issues/1158
 git config --global --add safe.directory "$GITHUB_WORKSPACE" || exit 1
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
