@@ -18,11 +18,16 @@ for source in $sources; do
     SOURCES="${SOURCES} --lint=${source}"
 done
 
-clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
+results=$(clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
   --lint "${SOURCES}" \
   --config "${INPUT_CLJ_KONDO_CONFIG}" \
-  --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}" :summary false}}' \
-  | reviewdog \
+  --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}" :summary false}}')
+
+echo "::group::Linter results"
+echo "${results}"
+echo "::endgroup::"
+
+echo $results | reviewdog \
       -efm="%f:%l:%c: %m" \
       -name="clj-kondo" \
       -reporter="${INPUT_REPORTER}" \
