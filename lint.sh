@@ -13,8 +13,13 @@ echo "::group::Files to lint"
 echo "${sources}"
 echo "::endgroup::"
 
+SOURCES=""
+for source in $sources; do
+    SOURCES="${SOURCES} --lint=${source}"
+done
+
 clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
-  --lint $source \
+  --lint "${SOURCES}" \
   --config "${INPUT_CLJ_KONDO_CONFIG}" \
   --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}' \
   | reviewdog \
