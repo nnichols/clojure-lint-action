@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "${GITHUB_WORKSPACE}" || exit
+cd "${GITHUB_WORKSPACE}" || exit 1
 
 # https://github.com/reviewdog/reviewdog/issues/1158
 git config --global --add safe.directory "$GITHUB_WORKSPACE" || exit 1
@@ -21,7 +21,7 @@ done
 clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
   --lint "${SOURCES}" \
   --config "${INPUT_CLJ_KONDO_CONFIG}" \
-  --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}' \
+  --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}" :summary false}}' \
   | reviewdog \
       -efm="%f:%l:%c: %m" \
       -name="clj-kondo" \
@@ -30,3 +30,7 @@ clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-ko
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
       "${INPUT_REVIEWDOG_FLAGS}"
+
+exit_code=$?
+
+exit $exit_code
