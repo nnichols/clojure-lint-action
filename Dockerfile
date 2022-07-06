@@ -1,4 +1,4 @@
-FROM nnichols/clojure-lint-action
+FROM clojure:openjdk-8-tools-deps-slim-buster
 
 ENV REVIEWDOG_VERSION=v0.12.0
 
