@@ -1,4 +1,4 @@
-FROM clojure:openjdk-8-tools-deps-slim-buster
+FROM clojure:temurin-18-tools-deps-alpine
 
 ENV REVIEWDOG_VERSION=v0.12.0
 
