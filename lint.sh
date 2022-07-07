@@ -13,10 +13,11 @@ echo "::group::Files to lint"
 echo "${sources}"
 echo "::endgroup::"
 
-clj-kondo --lint $(find "${INPUT_PATH}" -not -path "${INPUT_EXCLUDE}" -type f -name "${INPUT_PATTERN}") \
+clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
+  --lint $(find "${INPUT_PATH}" -not -path "${INPUT_EXCLUDE}" -type f -name "${INPUT_PATTERN}") \
   --config "${INPUT_CLJ_KONDO_CONFIG}" \
   --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}' \
-  --config '{:summary false}'
+  --config '{:summary false}' \
   | reviewdog \
       -efm="%f:%l:%c: %m" \
       -name="clj-kondo" \
