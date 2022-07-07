@@ -53,7 +53,7 @@ Default: `.`
 Optional.
 File patterns of target files.
 Same as `-name [pattern]` of `find` command.
-Default: `*.clj,*.cljc,*.cljs,*.cljx`
+Default: `*.clj*` (To capture `*.clj`, `*.cljs`, `*.cljc`, and `*.cljx`)
 
 ### `exclude`
 
@@ -72,6 +72,8 @@ Default: `'{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'`
 
 ### [.github/workflows/reviewdog.yml](.github/workflows/reviewdog.yml)
 
+To receive automatic Pull Request comments with linter results:
+
 ```yml
 name: Lint Clojure
 on: [pull_request]
@@ -80,12 +82,12 @@ jobs:
     name: runner / clj-kondo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3.0.2
       - name: clj-kondo
-        uses: nnichols/clojure-lint-action@v1
+        uses: nnichols/clojure-lint-action@v2
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review # Change reporter.
+          reporter: github-pr-review
 ```
 
 ## Licensing

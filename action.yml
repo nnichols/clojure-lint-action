@@ -51,7 +51,7 @@ inputs:
   pattern:
     required: false
     description: "File patterns of target files. Same as `-name [pattern]` of `find` command."
-    default: '*.clj'
+    default: '*.clj*'
   exclude:
     required: false
     description: "Exclude patterns of target files. Same as `-not -path [exclude]` of `find` command."
