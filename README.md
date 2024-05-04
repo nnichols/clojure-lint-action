@@ -92,6 +92,6 @@ jobs:
 
 ## Licensing
 
-Copyright © 2021-2023 [Nick Nichols](https://nnichols.github.io/)
+Copyright © 2021-2024 [Nick Nichols](https://nnichols.github.io/)
 
 Distributed under the [MIT License](https://github.com/nnichols/clojure-vulnerability-check-action/blob/master/LICENSE)
