@@ -1,5 +1,9 @@
 # Changelog
 
+## v3 - 2024-12-03
+
+- Pin the Alpine image version
+
 ## v2 - 2022-07-06
 
 - Migrate to Alpine tools.deps image
