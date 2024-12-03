@@ -1,4 +1,5 @@
-FROM clojure:temurin-18-tools-deps-alpine
+# https://hub.docker.com/layers/library/clojure/temurin-18-tools-deps-alpine/images/sha256-11322c60157b98e87bd55d523854d177e4b150f7b0ca2179550d7cd2a60961f8
+FROM clojure:temurin-18-tools-deps-alpine@sha256:11322c60157b98e87bd55d523854d177e4b150f7b0ca2179550d7cd2a60961f8
 
 ENV REVIEWDOG_VERSION=v0.12.0
 
