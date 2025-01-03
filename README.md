@@ -100,6 +100,6 @@ jobs:
 
 ## Licensing
 
-Copyright © 2021-2024 [Nick Nichols](https://nnichols.github.io/)
+Copyright © [Nick Nichols](https://nnichols.github.io/)
 
 Distributed under the [MIT License](https://github.com/nnichols/clojure-lint-action/blob/master/LICENSE)
