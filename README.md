@@ -92,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
       - name: clj-kondo
-        uses: nnichols/clojure-lint-action@v2
+        uses: nnichols/clojure-lint-action@v6
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
