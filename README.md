@@ -21,10 +21,12 @@ Optional.
 
 Optional.
 Report level for reviewdog- must be one of `[info, warning, error]`.
-It's same as `-level` flag of reviewdog.
+It's the same as `-level` flag of reviewdog.
+Default: `error`.
 
 ### `reporter`
 
+Optional.
 Reporter of reviewdog command.
 Must be one of `[github-pr-check, github-pr-review, github-check]`.
 Default is github-pr-check.
@@ -40,7 +42,7 @@ Default is added.
 ### `fail_on_error`
 
 Optional.
-Sets and exceptional exit code for reviewdog when errors are found.
+Sets an exceptional exit code for reviewdog when errors are found.
 Must be one of `[true, false]`.
 Default is `false`.
 
@@ -61,14 +63,14 @@ Default: `.`
 Optional.
 File patterns of target files.
 Same as `-name [pattern]` of `find` command.
-Default: `*.clj*` (To capture `*.clj`, `*.cljs`, `*.cljc`, and `*.cljx`)
+Default: `*.clj*` (matches `*.clj`, `*.cljs`, `*.cljc`, `*.cljx`, and any other `*.clj*` filename)
 
 ### `exclude`
 
 Optional.
 Exclude patterns of target files.
 Same as `-not -path [exclude]` of `find` command.
-e.g. `./git/*`
+e.g. `./.git/*`
 
 ### `clj_kondo_config`
 
@@ -78,7 +80,7 @@ Default: `'{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'`
 
 ## Example usage
 
-### [.github/workflows/reviewdog.yml](.github/workflows/reviewdog.yml)
+### Sample workflow
 
 To receive automatic Pull Request comments with linter results:
 
@@ -90,7 +92,7 @@ jobs:
     name: runner / clj-kondo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v4
       - name: clj-kondo
         uses: nnichols/clojure-lint-action@v6
         with:
