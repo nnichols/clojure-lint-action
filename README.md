@@ -78,6 +78,13 @@ Optional.
 Flags to pass to clj-kondo's `--config` option, which may either be in-line options or a path to a config file.
 Default: `'{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'`
 
+### `clj_kondo_version`
+
+Optional.
+Specifies the version of clj-kondo to use, passed as `:mvn/version` in clj-kondo's dependency map.
+e.g. `2026.04.15`.
+Default: `RELEASE`, which resolves to the latest published version at run time.
+
 ## Example usage
 
 ### Sample workflow

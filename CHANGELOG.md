@@ -1,5 +1,9 @@
 # Changelog
 
+## v7 - 2026-05-21
+
+- Allows overriding the running version of clj-kondo with `clj_kondo_version`.
+
 ## v6 - 2025-08-16
 
 - Enable parallel clj-kondo execution
