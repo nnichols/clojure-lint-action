@@ -61,5 +61,5 @@ inputs:
     default: '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'
   clj_kondo_version:
     required: false
-    description: "Version of clj-kondo to use, passed as the value of `:mvn/version` in clj-kondo's dependency map (e.g., `2026.04.15`). Defaults to `RELEASE` to preserve existing behavior."
+    description: "Version of clj-kondo to use, passed as the value of `:mvn/version` in clj-kondo's dependency map (e.g., `2026.04.15`). Defaults to `RELEASE`."
     default: 'RELEASE'
