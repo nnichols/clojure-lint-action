@@ -13,6 +13,7 @@ echo "INPUT_PATH: ${INPUT_PATH}"
 echo "INPUT_EXCLUDE: ${INPUT_EXCLUDE}"
 echo "INPUT_PATTERN: ${INPUT_PATTERN}"
 echo "INPUT_CLJ_KONDO_CONFIG: ${INPUT_CLJ_KONDO_CONFIG}"
+echo "INPUT_CLJ_KONDO_VERSION: ${INPUT_CLJ_KONDO_VERSION}"
 echo "INPUT_REPORTER: ${INPUT_REPORTER}"
 echo "INPUT_FILTER_MODE: ${INPUT_FILTER_MODE}"
 echo "INPUT_FAIL_ON_ERROR: ${INPUT_FAIL_ON_ERROR}"
@@ -26,7 +27,7 @@ echo "::group::Files to lint"
 echo "${sources}"
 echo "::endgroup::"
 
-clj -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main \
+clj -Sdeps "{:deps {clj-kondo/clj-kondo {:mvn/version \"${INPUT_CLJ_KONDO_VERSION}\"}}}" -M -m clj-kondo.main \
   --lint ${sources} \
   --config "${INPUT_CLJ_KONDO_CONFIG}" \
   --config '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}' \
