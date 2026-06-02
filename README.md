@@ -76,7 +76,10 @@ e.g. `./.git/*`
 
 Optional.
 Flags to pass to clj-kondo's `--config` option, which may either be in-line options or a path to a config file.
-Default: `'{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'`
+Default: `''` (no additional config passed to clj-kondo).
+
+The action sets clj-kondo's output pattern to `{{filename}}:{{row}}:{{col}}: {{message}}` so that reviewdog can parse the output via its `-efm` errorformat.
+This pattern is fixed by the action and is not user-configurable; user-supplied `clj_kondo_config` values may adjust linters and other clj-kondo settings, but any output pattern they pass will be overridden by the action.
 
 ### `clj_kondo_version`
 

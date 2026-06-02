@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail
 
 cd "${GITHUB_WORKSPACE}" || exit 1
 
@@ -42,7 +43,7 @@ clj -Sdeps "{:deps {clj-kondo/clj-kondo {:mvn/version \"${INPUT_CLJ_KONDO_VERSIO
       -level="${INPUT_LEVEL}" \
       "${INPUT_REVIEWDOG_FLAGS}"
 
-exit_code=$?
-echo "clj-kondo finished with exit code: ${exit_code}"
+exit_code=$? kondo_exit_code=${PIPESTATUS[0]}
+echo "clj-kondo finished with exit code: ${kondo_exit_code}"
 
 exit $exit_code
