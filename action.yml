@@ -58,7 +58,7 @@ inputs:
   clj_kondo_config:
     required: false
     description: "Flags to pass to clj-kondo's `--config` option, which may either be in-line options or a path to a config file."
-    default: '{:output {:pattern "{{filename}}:{{row}}:{{col}}: {{message}}"}}'
+    default: ''
   clj_kondo_version:
     required: false
     description: "Version of clj-kondo to use, passed as the value of `:mvn/version` in clj-kondo's dependency map (e.g., `2026.04.15`). Defaults to `RELEASE`."
