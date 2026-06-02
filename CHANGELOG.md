@@ -1,5 +1,16 @@
 # Changelog
 
+## v9 - 2026-06-02
+
+- Asserts Release Immutability in GitHub.
+  To learn more, please read GitHub's announcement here: <https://github.blog/changelog/2025-08-26-releases-now-support-immutability-in-public-preview/>
+  Released assets and the release itself are now immutable and can be verified using:
+
+```bash
+gh release verify <tag>
+gh release verify-asset <tag> <asset>
+```
+
 ## v8 - 2026-06-02
 
 - Bumps Temurin image to v21 as a base
