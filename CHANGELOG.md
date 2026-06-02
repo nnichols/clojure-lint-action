@@ -1,5 +1,13 @@
 # Changelog
 
+## v8 - 2026-06-02
+
+- Bumps Temurin image to v21 as a base
+- Remove in-image dependency pins
+- Bumps Reviewdog base version to 21
+- Documents passing in-line clj-kondo config to the action
+- Emits better logs to differentiate clj-kondo and reviewdog failures
+
 ## v7 - 2026-05-21
 
 - Allows overriding the running version of clj-kondo with `clj_kondo_version`.
