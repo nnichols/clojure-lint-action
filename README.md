@@ -10,6 +10,26 @@ The clojure-lint-action is used in almost every Wall Brew repository.
 If you'd like to see a sample GitHub workflow using this linter, please check out [spoon](https://github.com/Wall-Brew-Co/spoon/blob/1ec5a26e49561f6c653bbba666a024a9924cf831/.github/workflows/lint.yml#L33 "An example workflow file using this action.")
 That action was used as a CI/CD check in this [Pull Request.](https://github.com/Wall-Brew-Co/spoon/pull/14 "An example PR with 2 linter warnings written as comments")
 
+### Sample Workflow
+
+To receive automatic Pull Request comments with linter results:
+
+```yml
+name: Lint Clojure
+on: [pull_request]
+jobs:
+  clj-kondo:
+    name: runner / clj-kondo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: clj-kondo
+        uses: nnichols/clojure-lint-action@v10
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+```
+
 ## Inputs
 
 ### `github_token`
@@ -45,6 +65,7 @@ Optional.
 Sets an exceptional exit code for reviewdog when errors are found.
 Must be one of `[true, false]`.
 Default is `false`.
+This is the authoritative control for whether lint findings fail the step; see [Failure handling](#failure-handling).
 
 ### `reviewdog_flags`
 
@@ -61,16 +82,17 @@ Default: `.`
 ### `pattern`
 
 Optional.
-File patterns of target files.
-Same as `-name [pattern]` of `find` command.
-Default: `*.clj*` (matches `*.clj`, `*.cljs`, `*.cljc`, `*.cljx`, and any other `*.clj*` filename)
+File name pattern for target files, used verbatim as the `-name [pattern]` test of the `find` command.
+Default: empty, which matches the standard Clojure source extensions: `*.clj`, `*.cljs`, `*.cljc`, `*.cljx`, `*.cljd`, `*.cljr`.
+The `.git` directory is always pruned, so Git internals are never linted regardless of branch name.
 
 ### `exclude`
 
 Optional.
 Exclude patterns of target files.
 Same as `-not -path [exclude]` of `find` command.
-e.g. `./.git/*`
+e.g. `./target/*`
+Note: `.git` is always excluded, so you do not need to list it here.
 
 ### `clj_kondo_config`
 
@@ -88,27 +110,15 @@ Specifies the version of clj-kondo to use, passed as `:mvn/version` in clj-kondo
 e.g. `2026.04.15`.
 Default: `RELEASE`, which resolves to the latest published version at run time.
 
-## Example usage
+## Failure Handling
 
-### Sample workflow
+clj-kondo's findings are piped to reviewdog.
+Whether the step fails is controlled by `fail_on_error` (with `level`), which govern reviewdog's exit code.
+With the default `fail_on_error: false`, findings are reported as annotations or PR comments without failing the build.
 
-To receive automatic Pull Request comments with linter results:
+An internal clj-kondo error (exit code 1) always fails the step, even when `fail_on_error` is `false`, so a linter crash is never silently green.
 
-```yml
-name: Lint Clojure
-on: [pull_request]
-jobs:
-  clj-kondo:
-    name: runner / clj-kondo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: clj-kondo
-        uses: nnichols/clojure-lint-action@v6
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-```
+Each run logs the clj-kondo and reviewdog exit codes and emits an `::error::` annotation when clj-kondo exits non-zero, to make failures easier to triage.
 
 ## Licensing
 
