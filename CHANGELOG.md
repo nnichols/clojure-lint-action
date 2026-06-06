@@ -1,5 +1,13 @@
 # Changelog
 
+## v10 - 2026-06-06
+
+- Scopes the lint file search to real Clojure source extensions (`.clj`, `.cljs`, `.cljc`, `.cljx`, `.cljd`, `.cljr`) and always prunes `.git`, so Git internals are no longer linted.
+  Previously the default `*.clj*` pattern matched `.clj` anywhere in a path; on branches whose name contains `.clj` it fed Git ref files to clj-kondo and failed the run.
+  The `pattern` input default changed from `*.clj*` to empty, where empty selects the standard extensions; an explicit `pattern` is still honored verbatim.
+- Passes `--config` to clj-kondo only when `clj_kondo_config` is set, removing a misleading `error while reading <workspace> (No such file or directory)` warning on default runs.
+- Emits an `::error::` annotation naming clj-kondo and its exit code on failure, and logs both clj-kondo and reviewdog exit codes, to make failures easier to triage.
+
 ## v9 - 2026-06-02
 
 - Asserts Release Immutability in GitHub.

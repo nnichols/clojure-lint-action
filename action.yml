@@ -50,8 +50,11 @@ inputs:
     default: '.'
   pattern:
     required: false
-    description: "File patterns of target files. Same as `-name [pattern]` of `find` command."
-    default: '*.clj*'
+    description: |
+      File name pattern for target files, used verbatim as the `-name [pattern]` test of the `find` command.
+      Leave empty (the default) to match the standard Clojure source extensions: .clj, .cljs, .cljc, .cljx, .cljd, .cljr.
+      The `.git` directory is always pruned, so Git internals are never linted regardless of branch name.
+    default: ''
   exclude:
     required: false
     description: "Exclude patterns of target files. Same as `-not -path [exclude]` of `find` command."
