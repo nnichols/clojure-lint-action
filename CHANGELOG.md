@@ -1,5 +1,9 @@
 # Changelog
 
+## v11 - 2026-06-09
+
+- Upgrades the base image to: <https://hub.docker.com/layers/library/clojure/temurin-21-tools-deps-alpine/images/sha256-e7534968e364dd5457785a57d8e8e4b6e0f581110b4c4a40194ad6c115633e43>
+
 ## v10 - 2026-06-06
 
 - Scopes the lint file search to real Clojure source extensions (`.clj`, `.cljs`, `.cljc`, `.cljx`, `.cljd`, `.cljr`) and always prunes `.git`, so Git internals are no longer linted.
