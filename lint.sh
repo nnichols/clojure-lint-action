@@ -22,8 +22,6 @@ echo "INPUT_LEVEL: ${INPUT_LEVEL}"
 echo "INPUT_REVIEWDOG_FLAGS: ${INPUT_REVIEWDOG_FLAGS}"
 echo "::endgroup::"
 
-# Match file names by extension suffix, not as a substring.
-# Default to standard Clojure extensions; a user-supplied INPUT_PATTERN is used verbatim.
 if [ -n "${INPUT_PATTERN}" ]; then
   name_expr=( -name "${INPUT_PATTERN}" )
 else
