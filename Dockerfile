@@ -1,5 +1,5 @@
 # https://hub.docker.com/layers/library/clojure/temurin-21-tools-deps-alpine/images/sha256-03867e07345101c349fe1e1311de391d73c6b49ee7381f4eb196aede6e58624e
-FROM clojure:temurin-21-tools-deps-alpine@sha256:03867e07345101c349fe1e1311de391d73c6b49ee7381f4eb196aede6e58624e
+FROM clojure:temurin-21-tools-deps-alpine@sha256:d6a2032b47a0967b90d4a7f7c8053bbcbe00f661ec97ba63de06242957c066be
 
 # https://github.com/reviewdog/reviewdog/blob/master/CHANGELOG.md#v0210---2025-09-03
 ENV REVIEWDOG_VERSION=v0.21.0
